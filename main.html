@@ -8,6 +8,72 @@
 
 <body>
 	<!-- the entire body must be written by student -->
+	<h1>MyBookList</h1>
+
+
+<div class="form-group">
+<input type="text" id="title" placeholder="Book Title" />
+<input type="text" id="author" placeholder="Author" />
+<input type="text" id="isbn" placeholder="ISBN Number" />
+<button id="submit">Add Book</button>
+</div>
+
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Title</th>
+<th>Author</th>
+<th>ISBN#</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="book-list"></tbody>
+</table>
+
+
+<script>
+const submitBtn = document.getElementById('submit');
+const bookList = document.getElementById('book-list');
+
+
+submitBtn.addEventListener('click', function () {
+const title = document.getElementById('title').value.trim();
+const author = document.getElementById('author').value.trim();
+const isbn = document.getElementById('isbn').value.trim();
+
+
+if (title === '' || author === '' || isbn === '') {
+alert('Please fill all fields');
+return;
+}
+
+
+const row = document.createElement('tr');
+
+
+row.innerHTML = `
+<td>${title}</td>
+<td>${author}</td>
+<td>${isbn}</td>
+<td><button class="delete">Clear</button></td>
+`;
+
+
+bookList.appendChild(row);
+
+
+document.getElementById('title').value = '';
+document.getElementById('author').value = '';
+document.getElementById('isbn').value = '';
+});
+
+
+bookList.addEventListener('click', function (e) {
+if (e.target.classList.contains('delete')) {
+e.target.parentElement.parentElement.remove();
+}
+});
     <script type="text/javascript" src="./script.js">
 </script>
 
